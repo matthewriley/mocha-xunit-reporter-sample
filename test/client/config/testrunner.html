@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <!-- Testing Libs -->
+  <script src="node_modules/mocha/mocha.js"></script>
+  <script src="node_modules/chai/chai.js"></script>
+  <script src="node_modules/sinon-chai/lib/sinon-chai.js"></script>
+  <script src="node_modules/sinon/pkg/sinon.js"></script>
+  <!-- Vendor Libs -->
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <div id="mocha"></div>
+
+  <script>
+    mocha.setup('bdd');
+    mocha.reporter('html');
+    var expect = chai.expect;
+  </script>
+  <script src="node_modules/angular-mocks/angular-mocks.js"></script>
+
+  <!-- Bundle of Files to Test -->
+  <script src="../../../app/app.js" data-cover></script>
+  <script src="node_modules/blanket/dist/qunit/blanket.js" data-cover-flags="branchTracking debug" data-cover-timeout="3000"></script>
+  <script src="node_modules/blanket/src/adapters/mocha-blanket.js"></script>
+
+  <!-- Test Bundle -->
+  <script src="../specs/controller.spec.js"></script>
+  <script src="../specs/message.service.spec.js"></script>
+
+  <script>
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+      mocha.globals([]);
+      mocha.run();
+    }
+  </script>
+</body>
+</html>
